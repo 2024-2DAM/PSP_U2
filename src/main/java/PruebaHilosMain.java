@@ -33,12 +33,24 @@ public class PruebaHilosMain {
 
         PruebaRunnable pr = new PruebaRunnable("r1");
         //pr.start();   //No lo tengo, lo tengo que envolver en un obj de la clase Thread
-        for (int i = 0; i < 10; i++) {
+        int numHilos = 100000;
+        //En este array voy a guardar todos los hilos que lanzo, para luego ser capaz de esperarlos (join)
+        Thread[] hilos = new Thread[numHilos];
+
+        for (int i = 0; i < numHilos; i++) {
             Thread hiloR = new Thread(pr);
-            hiloR.start();
+            hilos[i] = hiloR;   //Meto cada hilo al array
+            hilos[i].start();
         }
 
-        System.out.println("El valor de la variable estática es " + variable);
+        //Recorro el array para esperarlos:
+        for (int i = 0; i < numHilos; i++) {
+            hilos[i].join();
+        }
+
+
+        //Thread.sleep(1000); //MALA Solución de la condición de carrera (que el system.out imprima antes de que los hilos hayan terminado de ejecugtarse
+        System.out.println("\n\nEl valor de la variable estática es " + variable);
         System.out.println("Termina el principal");
     }
 }
