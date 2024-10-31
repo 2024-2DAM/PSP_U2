@@ -1,3 +1,5 @@
+package codigosClase;
+
 public class PruebaThread extends Thread {
     private String nombre;
 

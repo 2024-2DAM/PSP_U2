@@ -1,3 +1,5 @@
+package codigosClase;
+
 public class PruebaHilosMain {
     private static PruebaThread pt;
     public static int variable = 0;
@@ -5,7 +7,7 @@ public class PruebaHilosMain {
     public static void main(String[] args) throws InterruptedException {
         System.out.println("INICIO");
 
-        /*PruebaThread pt = new PruebaThread("hilo1");
+        /*codigosClase.PruebaThread pt = new codigosClase.PruebaThread("hilo1");
         pt.start(); //Con start planifico el hilo para que se ejecute cuando le toque
         */
 
@@ -14,7 +16,7 @@ public class PruebaHilosMain {
             PruebaThread hilo = new PruebaThread("hilo" + i);
             //hilo.setPriority(prioridad);
            // hilo.start();
-//            if (prioridad == PruebaThread.MAX_PRIORITY) {
+//            if (prioridad == codigosClase.PruebaThread.MAX_PRIORITY) {
 //                prioridad = Thread.MIN_PRIORITY;    //1
 //            } else {
 //                prioridad++;
@@ -44,10 +46,12 @@ public class PruebaHilosMain {
         }
 
         //Recorro el array para esperarlos:
+        //Tengo que esperar a que los hilos terminene porque desde este hilo (el main)
+        //después voy a acceder a esa variable, por tanto, han tenido que terminar antes
+        // de acceder a ella.
         for (int i = 0; i < numHilos; i++) {
             hilos[i].join();
         }
-
 
         //Thread.sleep(1000); //MALA Solución de la condición de carrera (que el system.out imprima antes de que los hilos hayan terminado de ejecugtarse
         System.out.println("\n\nEl valor de la variable estática es " + variable);

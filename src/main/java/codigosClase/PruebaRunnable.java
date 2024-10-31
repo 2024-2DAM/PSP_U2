@@ -1,3 +1,5 @@
+package codigosClase;
+
 public class PruebaRunnable implements Runnable{
 
     private String id;
