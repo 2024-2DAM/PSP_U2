@@ -8,6 +8,7 @@ public class SecretariaMain {
             t[i] = new Thread(s);
             t[i].start();
         }
+
         for (int i = 0; i < 7; i++) {
             try {
                 t[i].join();
@@ -15,7 +16,6 @@ public class SecretariaMain {
                 e.printStackTrace();
             }
         }
-
 
         //TODO: esto es un problema de sincro
         System.out.println("TOTAL: " + Secretaria.contador);
